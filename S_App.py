@@ -1,13 +1,18 @@
 import streamlit as st
-import pickle
+import joblib  # Ganti dari pickle ke joblib
 import pandas as pd
-
 import os
+
 st.write("Current directory:", os.getcwd())
 st.write("Files in directory:", os.listdir("."))
 
-MODEL_PATH = os.path.join("models", "customer_churn_model_xgb.sav")
+# Optional versi info
+import sklearn
+import imblearn
+st.write("scikit-learn version:", sklearn.__version__)
+st.write("imbalanced-learn version:", imblearn.__version__)
 
+MODEL_PATH = os.path.join("models", "customer_churn_model_xgb.sav")
 
 @st.cache_resource
 def load_model():
@@ -15,14 +20,14 @@ def load_model():
         st.error(f"Model file not found at {MODEL_PATH}")
         return None
 
-    with open(MODEL_PATH, "rb") as model_file:
-        loaded_model = pickle.load(model_file)
+    # Ganti dari pickle ke joblib
+    loaded_model = joblib.load(MODEL_PATH)
     return loaded_model
 
 best_model = load_model()
 
 if best_model is None:
-    st.stop()  # Hentikan Streamlit jika model tidak ditemukan
+    st.stop()
 
 # UI dengan Streamlit
 st.title("\U0001F4CA Buxton Store Customer Churn Prediction")
