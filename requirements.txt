@@ -2,9 +2,9 @@ streamlit==1.22.0
 pandas==2.2.2
 numpy==1.26.4
 scikit-learn==1.3.2
+imbalanced-learn==0.13.0
 xgboost
 joblib
-imbalanced-learn
 
 
 
