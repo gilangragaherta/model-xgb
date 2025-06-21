@@ -1,19 +1,24 @@
 import streamlit as st
-import joblib  # Ganti dari pickle ke joblib
+import joblib
 import pandas as pd
 import os
 
-# Debug (opsional, bisa dihapus saat produksi)
+# ⛑ Tambahan penting agar joblib.load() tidak gagal:
+from imblearn.over_sampling import SMOTE
+from imblearn.pipeline import Pipeline
+from xgboost import XGBClassifier
+
+# Debug (boleh dihapus nanti)
 st.write("Current directory:", os.getcwd())
 st.write("Files in directory:", os.listdir("."))
 
-# Optional: tampilkan versi library
+# Tampilkan versi lib (debug)
 import sklearn
 import imblearn
 st.write("scikit-learn version:", sklearn.__version__)
 st.write("imbalanced-learn version:", imblearn.__version__)
 
-# Path file model
+# Path ke model
 MODEL_PATH = os.path.join("models", "customerchurn_model_xgb.joblib")
 
 @st.cache_resource
@@ -21,7 +26,11 @@ def load_model():
     if not os.path.exists(MODEL_PATH):
         st.error(f"Model file tidak ditemukan di {MODEL_PATH}")
         return None
-    return joblib.load(MODEL_PATH)
+    try:
+        return joblib.load(MODEL_PATH)
+    except Exception as e:
+        st.error(f"Gagal memuat model: {e}")
+        return None
 
 # Load model
 best_model = load_model()
