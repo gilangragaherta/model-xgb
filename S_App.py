@@ -15,8 +15,8 @@ from xgboost import XGBClassifier
 # Tampilkan versi lib (debug)
 import sklearn
 import imblearn
-st.write("scikit-learn version:", sklearn.__version__)
-st.write("imbalanced-learn version:", imblearn.__version__)
+# st.write("scikit-learn version:", sklearn.__version__)
+# st.write("imbalanced-learn version:", imblearn.__version__)
 
 # Path ke model
 MODEL_PATH = os.path.join("models", "customerchurn_model_xgb.joblib")
