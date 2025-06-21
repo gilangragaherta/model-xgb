@@ -9,8 +9,8 @@ from imblearn.pipeline import Pipeline
 from xgboost import XGBClassifier
 
 # Debug (boleh dihapus nanti)
-st.write("Current directory:", os.getcwd())
-st.write("Files in directory:", os.listdir("."))
+# st.write("Current directory:", os.getcwd())
+# st.write("Files in directory:", os.listdir("."))
 
 # Tampilkan versi lib (debug)
 import sklearn
