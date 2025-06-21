@@ -6,7 +6,8 @@ xgboost==1.7.5
 imbalanced-learn==0.10.1
 joblib==1.2.0
 openpyxl
-shap
 statsmodels
 jinja2
+shap
+
 
